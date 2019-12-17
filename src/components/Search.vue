@@ -12,7 +12,7 @@ export default {
   name: "Search",
   data() {
     return {
-      query: ""
+      query: "dog"
     };
   },
   methods: {
