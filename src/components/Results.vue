@@ -1,5 +1,6 @@
 <template>
   <div class="results">
+    Current offset: {{offset}}
     <div class="row">
       <div class="col">
         <iframe v-for="gif in gifs" :key="gif.id" :src="gif.embed_url"></iframe>
@@ -17,10 +18,9 @@
 <script>
 export default {
   name: "Results",
+  props: ["offset"],
   data() {
-    return {
-      offset: 0
-    };
+    return {};
   },
   computed: {
     gifs() {
@@ -29,10 +29,12 @@ export default {
   },
   methods: {
     nextPage() {
-      this.$store.dispatch("searchNextPage", (this.offset += 4));
+      this.$emit("next");
+      this.$store.dispatch("searchNextPage", this.offset);
     },
     lastPage() {
-      this.$store.dispatch("searchLastPage", (this.offset -= 4));
+      this.$emit("previous");
+      this.$store.dispatch("searchLastPage", this.offset);
     }
   }
 };

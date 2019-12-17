@@ -18,6 +18,7 @@ export default {
   methods: {
     search() {
       this.$store.dispatch("searchGiphyApi", this.query);
+      this.$emit("resetOffset");
     }
   }
 };
